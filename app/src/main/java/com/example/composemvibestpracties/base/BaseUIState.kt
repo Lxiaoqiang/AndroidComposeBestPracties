@@ -1,0 +1,3 @@
+package com.example.composemvibestpracties.base
+
+interface BaseUIState
