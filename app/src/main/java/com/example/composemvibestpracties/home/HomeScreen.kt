@@ -12,17 +12,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
-import com.example.composemvibestpracties.Widget
+import com.example.composemvibestpracties.navigator.LocalAppNavigator
+import com.example.composemvibestpracties.navigator.Screen
 
 
 typealias onHomeViewModelEvent = (HomeViewModelUIEvent) -> Unit
 
 @Composable
 fun HomeScreen(
-    navigationController: NavController,
     viewModel: HomeViewModel = viewModel()
 ) {
+    val navigator = LocalAppNavigator.current
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -39,7 +39,7 @@ fun HomeScreen(
                     //navigate to other page
                 }
                 is HomeViewModelActionState.GotoWidgetPage -> {
-                    navigationController.navigate(Widget)
+                    navigator.navigateTo(Screen.Widget)
                 }
             }
         }
